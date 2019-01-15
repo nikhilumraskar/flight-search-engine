@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Tentwenty_Flight>
+            <version>1.0.1</version>
+        </Tentwenty_Flight>
+    </modules>
+    <global>
+       <blocks>
+           <tentwenty_flight>
+               <class>Tentwenty_Flight_Block</class>
+           </tentwenty_flight>
+       </blocks>
+    </global>
+
+    <frontend>
+        <routers>
+            <tentwenty_flight>
+            <use>standard</use>
+            <args>
+                <module>Tentwenty_Flight</module>
+                <frontName>flight</frontName>
+            </args>
+            </tentwenty_flight>
+        </routers>
+        <layout>
+            <updates>
+                <tentwenty_flight>
+                    <file>flight.xml</file>
+                </tentwenty_flight>
+            </updates>
+         </layout>
+    </frontend>
+</config>

@@ -1,0 +1,120 @@
+<script type="text/html" id="search-result-template">
+    <div class="panel panel-default result-card">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                ₹ <%= price %>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="col-md-4 col-sm-4 col-xs-6">
+                    <p class='flight_details'>One Way</p>
+                    <p class='route'><%= origin %> > <%= destination %></p>
+                    <p class='flight_details'>
+                        Flight No. : <%= airlineCode %>-<%= flightNumber %>
+                    </p>
+                    <p class='flight_details'>
+                        Depart : <%= new Date(departure).toLocaleTimeString() %>
+                    </p>
+                    <p class='flight_details'>
+                        Arrive : <%= new Date(arrival).toLocaleTimeString() %>
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-6">
+                    <% 
+                        if(
+                            typeof(return_way_flag) !== 'undefined' && 
+                            return_way_flag == 1
+                        ){ 
+                    %>
+                        <%
+                            for(var flight = 0; flight<return_flights.length; flight++){
+                        %>
+                            <p class='flight_details'>Return</p>
+                            <p class='route'>
+                                <%= return_flights[flight].origin %> > <%= return_flights[flight].destination %>
+                            </p>
+                            <p class='flight_details'>
+                                Flight No. : <%= return_flights[flight].airlineCode %>-<%= return_flights[flight].flightNumber %>
+                            </p>
+                            <p class='flight_details'>
+                                Depart : <%= new Date(return_flights[flight].departure).toLocaleTimeString() %>
+                            </p>
+                            <p class='flight_details'>
+                                Arrive : <%= new Date(return_flights[flight].arrival).toLocaleTimeString() %>
+                            </p>
+                        <% } %>
+                    <% } %>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <button class="btn btn-default book_flight">Book This Flight</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Flight Search Engine</a>
+        </div>
+      </div>
+    <div class="sidebar">
+        <div>
+            <center>
+                <div class="form-group btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-info active" id="one_way">One Way</button>
+                    <button type="button" class="btn btn-info" id="return_way">Return</button>
+                </div>
+            </center>
+            <div class="form-group">
+              <input type="text" class="form-control" id="origin" placeholder="Enter Origin">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="destination" placeholder="Enter Destination">
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" id="departure_date" placeholder="Departure Date" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="passengers" placeholder="Passengers">
+            </div>
+            <center>
+                <button class="btn btn-default align-center search" id="search_query">Search</button>
+            </center>
+        </div>
+    </div>
+    </nav>
+
+<div class="container">
+    <div class="search-content">
+        
+        <div class="panel panel-default result-head">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="col-md-9 col-sm-9 col-xs-9 result-bar search_origin_dest">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3 result-bar search_dep_date">
+                       
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-result search_dep_date">
+                        No Flights Found
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-results">
+            
+        </div>
+        
+    </div>
+</div>
+<script>
+//validation
+</script>
